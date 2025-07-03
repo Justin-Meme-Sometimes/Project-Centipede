@@ -27,6 +27,8 @@ Project-Centipede/
 ```
 cd backend
 npm install
+npm install bcrypt
+npm install nodemon
 ```
 
 Create a `.env` file in `backend/` with:
