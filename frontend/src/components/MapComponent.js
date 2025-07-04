@@ -14,14 +14,6 @@ const LocationAnnouncer = () => {
         const { latitude, longitude } = pos.coords;
         const coordsString = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
         setLocationString(coordsString);
-        
-        // Announce location
-        if ('speechSynthesis' in window) {
-          const message = new SpeechSynthesisUtterance(`Your location is latitude ${latitude.toFixed(5)} and longitude ${longitude.toFixed(5)}`);
-          window.speechSynthesis.speak(message);
-        } else {
-          console.warn('Speech synthesis not supported');
-        }
       },
       (err) => {
         alert('Unable to retrieve your location: ' + err.message);
