@@ -2,10 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import MapComponent from './components/MapComponent';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
 
-  const [apiMessage, setApiMessage] = useState('');
+  /*const [apiMessage, setApiMessage] = useState('');
 
 
   useEffect(() => {axios.get('api/test')
@@ -29,6 +31,13 @@ function App() {
           Learn React
         </a>
       </header>
+    </div>
+  );*/
+
+  return(
+    <div className="App">
+      <h1>My Location Map</h1>
+      <MapComponent />
     </div>
   );
 }
