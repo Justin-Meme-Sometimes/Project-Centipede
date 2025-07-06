@@ -29,6 +29,7 @@ cd backend
 npm install
 npm install bcrypt
 npm install nodemon
+npm install jsonwebtoken
 ```
 
 Create a `.env` file in `backend/` with:
