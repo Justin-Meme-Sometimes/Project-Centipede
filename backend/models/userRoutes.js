@@ -1,7 +1,27 @@
 const express =  require('express');
 const router =  express.Router();
 const User =  require('../models/User');
+const Group = require('../models/Group');
 const bcrypt = require ('bcrypt');
+
+router.get('/:id', async (req, res) =>{
+    try{
+        const requestedUser = await User.findById(req.params.id).lean();
+        const currentUserId = req.user._id;
+
+        const isInSameGroup = await Group.findOne({
+            'members.user': { $all: [requestedUser._id, currentUserId] }
+        });
+
+        if (!isInSameGroup) {
+            delete requestedUser.address;
+        }
+
+        res.json(requestedUser);
+    } catch (err) {
+        res.status(500).json({ error: 'Something went wrong' });
+    }
+});
 
 router.post('/', async (req, res) => {
     const { username, email, password } = req.body;
