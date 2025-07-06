@@ -3,10 +3,12 @@ const router =  express.Router();
 const User =  require('../models/User');
 const Group = require('../models/Group');
 const bcrypt = require ('bcrypt');
+const auth = require('../middleware/auth')
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
+      console.log(req.method, req.url, req.headers['authorization']);
     try{
-        const { name, location, county, maxGroupSize } = req.body;
+        const { name, location, county, maxGroupSize, acceptingNewMembers, members } = req.body;
         const userId = req.user._id;
 
         const newGroup = new Group({ 
@@ -15,6 +17,7 @@ router.post('/', async (req, res) => {
             county,
             maxGroupSize,
             groupSize: 1,
+            acceptingNewMembers,
             members:[{
                 user: userId,
                 role: 'owner'
@@ -58,3 +61,5 @@ router.get('/:id', auth, async (req, res) =>{
         res.status(500).json({ error: 'Failed to get group' });
     }
 });
+
+module.exports = router;

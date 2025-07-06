@@ -3,7 +3,7 @@ const router =  express.Router();
 const User =  require('../models/User');
 const Group = require('../models/Group');
 const bcrypt = require ('bcrypt');
-const protect = require('../middleware/auth')
+const auth = require('../middleware/auth')
 
 router.get('/:id', auth, async (req, res) =>{
     try{
