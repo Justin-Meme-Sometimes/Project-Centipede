@@ -38,3 +38,23 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: 'Failed to create group' });
     }
 });
+
+router.get('/:id', auth, async (req, res) =>{
+    try{
+        const currentUserId = req.user._id;
+
+        const group = await Group.findById(req.params.id).populate('members.user').lean();
+        group.members.forEach(member => {
+            const isCurrentUser = member.user._id.toString() === currentUserId._id;
+            const sameGroup = group.members.some(m => m.user._id.toString() === currentUserId._id);
+
+            if (!sameGroup && !isCurrentUser){
+                delete member.user.address;
+            }
+        });
+
+        res.json(group);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to get group' });
+    }
+});

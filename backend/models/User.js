@@ -27,7 +27,15 @@ const UserSchema = new mongoose.Schema({
         type: String
     },
 
-    gameplayPreferences:[String],
+    playstylePreferences:[{
+        type: String,
+        enum: ['narrative', 'tactical', 'freeform', 'world-building'],
+    }],
+
+    formatPreferences:[{
+        type: String,
+        enum: ['campaign', 'oneshot'],
+    }],
     
     address:{
         type:String,

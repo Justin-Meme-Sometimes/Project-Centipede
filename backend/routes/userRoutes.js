@@ -3,8 +3,9 @@ const router =  express.Router();
 const User =  require('../models/User');
 const Group = require('../models/Group');
 const bcrypt = require ('bcrypt');
+const protect = require('../middleware/auth')
 
-router.get('/:id', async (req, res) =>{
+router.get('/:id', auth, async (req, res) =>{
     try{
         const requestedUser = await User.findById(req.params.id).lean();
         const currentUserId = req.user._id;
