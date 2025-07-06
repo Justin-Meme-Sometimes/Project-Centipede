@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
         type: String
     },
 
+    bio: {
+        type: String
+    },
+
     favoriteGame: {
         type: String
     },
