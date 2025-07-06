@@ -3,7 +3,8 @@ const router =  express.Router();
 const User =  require('../models/User');
 const Group = require('../models/Group');
 const bcrypt = require ('bcrypt');
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
+const auth = require('../middleware/multer');
 
 router.get('/:id', auth, async (req, res) =>{
     try{
@@ -44,5 +45,20 @@ router.post('/', async (req, res) => {
         res.status(400).json({ error: 'Failed to create user' });
     }
 });
+
+router.patch('/:id/profile-picture', upload.single('profilePicture'), async (req, res) => {
+    try{
+        const filePath = req.file.path;
+        const updatedUser = await user.findByIdAndUpdate(
+            req.params.id, 
+            { profilePicture: filePath }, 
+            { new: true }
+        );
+        res.json(201).json({ message: 'Profile picture updated', user: updatedUser });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to upload profile picture' });
+    }
+}); //still need to test
 
 module.exports = router;

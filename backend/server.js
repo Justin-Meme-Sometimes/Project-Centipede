@@ -14,6 +14,7 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/groups', auth, groupRoutes);
 app.use('/api/auth', loginRoutes);
+app.use('/uploads', express.static('uploads'));
 
 
 mongoose

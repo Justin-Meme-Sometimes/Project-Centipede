@@ -31,6 +31,11 @@ const UserSchema = new mongoose.Schema({
         type: String
     },
 
+    profilePicture: {
+        type: string,
+        default: 'https://example.com/default-profile.png',
+    },
+
     favoriteGame: {
         type: String
     },
