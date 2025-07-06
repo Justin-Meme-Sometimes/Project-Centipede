@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema({
         default: Date.now,
     },
 
+    pronouns: {
+        type: String
+    },
+
     favoriteGame: {
         type: String
     },
