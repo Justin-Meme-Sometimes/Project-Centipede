@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const bulletinSchema = new mongoose.Schema({
-    authorID: {
+    authorId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         refPath: 'authorModel'
@@ -41,3 +41,5 @@ const bulletinSchema = new mongoose.Schema({
         default: Date.now 
     }
 });
+
+module.exports = mongoose.model('Bulletin', bulletinSchema);

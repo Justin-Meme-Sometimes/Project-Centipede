@@ -4,7 +4,7 @@ const User =  require('../models/User');
 const Group = require('../models/Group');
 const bcrypt = require ('bcrypt');
 const auth = require('../middleware/auth');
-const auth = require('../middleware/multer');
+const upload = require('../middleware/multer');
 
 router.get('/:id', auth, async (req, res) =>{
     try{

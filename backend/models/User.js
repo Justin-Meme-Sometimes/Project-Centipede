@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+    refreshToken: { 
+        type: String 
+    },
+    
     username: {
         type: String,
         required: true,
@@ -32,7 +36,7 @@ const UserSchema = new mongoose.Schema({
     },
 
     profilePicture: {
-        type: string,
+        type: String,
         default: 'https://example.com/default-profile.png',
     },
 
@@ -51,7 +55,7 @@ const UserSchema = new mongoose.Schema({
     }],
     
     address:{
-        type:String,
+        type: String,
         required: false
     }, //need to figure out to how to ensure this is private to most users
     
