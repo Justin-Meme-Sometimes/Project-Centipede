@@ -30,6 +30,7 @@ npm install
 npm install bcrypt
 npm install nodemon
 npm install jsonwebtoken
+npm install multer
 ```
 
 Create a `.env` file in `backend/` with:
