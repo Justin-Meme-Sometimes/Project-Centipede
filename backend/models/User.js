@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
     },
 
     gameplayPreferences:[String],
+    
     address:{
         type:String,
         required: false
